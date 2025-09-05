@@ -112,8 +112,8 @@ seedTransactions(initialData);
 const callGeminiAPI = async (prompt, systemInstruction = "") => {
     // API key is intentionally left blank.
     // The execution environment will automatically provide it.
-    const apiKey = ""; 
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+    const apiKey = "AIzaSyC2AM1faX1vmAITjDsZs_wXbnyO2fUhaPQ"; 
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${AIzaSyC2AM1faX1vmAITjDsZs_wXbnyO2fUhaPQ}`;
 
     const payload = {
         contents: [{ parts: [{ text: prompt }] }],
