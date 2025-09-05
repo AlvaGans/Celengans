@@ -38,6 +38,13 @@ const initialData = {
     ledger_entries: [],
 };
 
+const LOCAL_KEY = {
+    USERS: 'celengan_users',
+    ACCOUNTS: 'celengan_accounts',
+    TRANSACTIONS: 'celengan_transactions',
+    LEDGER: 'celengan_ledger',
+};
+
 // --- HELPER FUNCTIONS ---
 const formatCurrency = (amount) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(amount);
 const formatDate = (dateString) => new Date(dateString).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
@@ -112,8 +119,11 @@ seedTransactions(initialData);
 const callGeminiAPI = async (prompt, systemInstruction = "") => {
     // API key is intentionally left blank.
     // The execution environment will automatically provide it.
-    const apiKey = "AIzaSyC2AM1faX1vmAITjDsZs_wXbnyO2fUhaPQ"; 
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${AIzaSyC2AM1faX1vmAITjDsZs_wXbnyO2fUhaPQ}`;
+    // filepath: c:\Users\USER\Downloads\Celengans-gh-pages\src\App.jsx
+// ...existing code...
+const apiKey = "AIzaSyC2AM1faX1vmAITjDsZs_wXbnyO2fUhaPQ";
+const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+// ...existing code...
 
     const payload = {
         contents: [{ parts: [{ text: prompt }] }],
@@ -947,14 +957,42 @@ const LedgerPage = ({ ledgerEntries, transactions, users, accounts, onExport }) 
 
 
 // --- Main App Component ---
+// ...existing code...
 export default function App() {
     // --- STATE MANAGEMENT (Simulating Backend & Database) ---
     const [currentUser, setCurrentUser] = useState(null);
     const [page, setPage] = useState('login'); // login, userDashboard, superuserDashboard, etc.
-    const [users, setUsers] = useState(initialData.users);
-    const [accounts, setAccounts] = useState(initialData.accounts);
-    const [transactions, setTransactions] = useState(initialData.transactions);
-    const [ledgerEntries, setLedgerEntries] = useState(initialData.ledger_entries);
+
+    const [users, setUsers] = useState(() => {
+        const saved = localStorage.getItem(LOCAL_KEY.USERS);
+        return saved ? JSON.parse(saved) : initialData.users;
+    });
+    const [accounts, setAccounts] = useState(() => {
+        const saved = localStorage.getItem(LOCAL_KEY.ACCOUNTS);
+        return saved ? JSON.parse(saved) : initialData.accounts;
+    });
+    const [transactions, setTransactions] = useState(() => {
+        const saved = localStorage.getItem(LOCAL_KEY.TRANSACTIONS);
+        return saved ? JSON.parse(saved) : initialData.transactions;
+    });
+    const [ledgerEntries, setLedgerEntries] = useState(() => {
+        const saved = localStorage.getItem(LOCAL_KEY.LEDGER);
+        return saved ? JSON.parse(saved) : initialData.ledger_entries;
+    });
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_KEY.USERS, JSON.stringify(users));
+    }, [users]);
+    useEffect(() => {
+        localStorage.setItem(LOCAL_KEY.ACCOUNTS, JSON.stringify(accounts));
+    }, [accounts]);
+    useEffect(() => {
+        localStorage.setItem(LOCAL_KEY.TRANSACTIONS, JSON.stringify(transactions));
+    }, [transactions]);
+    useEffect(() => {
+        localStorage.setItem(LOCAL_KEY.LEDGER, JSON.stringify(ledgerEntries));
+    }, [ledgerEntries]);
+
 
     // --- AUTHENTICATION LOGIC ---
     const handleLogin = (email, password) => {
@@ -1117,4 +1155,3 @@ export default function App() {
         </div>
     );
 }
-
