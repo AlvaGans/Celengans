@@ -32,8 +32,7 @@ const initialData = {
         { id: 1, name: 'Alva', email: 'super@admin', phone: '081234567890', role: 'superuser', password_hash: 'admin123', is_active: true, created_at: '2023-01-01T10:00:00Z' },
     ],
     accounts: [
-        { id: 101, code: 'KAS', name: 'Kas', type: 'asset', created_at: '2023-01-01T00:00:00Z' },
-        { id: 201, code: 'TABUNGAN_USER', name: 'Tabungan User', type: 'liability', created_at: '2023-01-01T00:00:00Z' },
+
     ],
     transactions: [],
     ledger_entries: [],
@@ -103,18 +102,8 @@ const seedTransactions = (data) => {
     };
 
     // Dummy deposits
-    createTransaction(2, '2023-01-10T10:00:00Z', 50000, 'Setoran awal', 'deposit');
-    createTransaction(2, '2023-01-15T11:00:00Z', 75000, 'Tabungan mingguan', 'deposit');
-    createTransaction(2, '2023-02-01T09:00:00Z', 100000, 'Gajian', 'deposit');
-    createTransaction(3, '2023-01-12T14:00:00Z', 150000, 'Setoran pertama', 'deposit');
-    createTransaction(3, '2023-02-05T16:00:00Z', 200000, 'Bonus', 'deposit');
-    createTransaction(4, '2023-01-18T08:00:00Z', 200000, 'Tabungan rutin', 'deposit');
-    createTransaction(4, '2023-02-18T08:30:00Z', 150000, 'Sisa belanja', 'deposit');
-    createTransaction(5, '2023-01-25T13:00:00Z', 80000, '', 'deposit');
-    createTransaction(5, '2023-02-20T11:00:00Z', 120000, 'Tabungan', 'deposit');
     
     // Dummy withdrawal
-    createTransaction(2, '2023-02-25T10:00:00Z', 40000, 'Keperluan mendadak', 'withdrawal');
 };
 
 seedTransactions(initialData);
