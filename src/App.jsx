@@ -123,7 +123,8 @@ const callGeminiAPI = async (prompt, systemInstruction = "") => {
     // filepath: c:\Users\USER\Downloads\Celengans-gh-pages\src\App.jsx
 // ...existing code...
 const apiKey = "AIzaSyAGGc9ERQB9dWXHEEtCAc3o5A_lY2rH4y4";
-const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+const apiUrl = `https://corsproxy.io/?https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+//const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 // ...existing code...
 
     const payload = {
@@ -137,11 +138,11 @@ const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2
     }
 
     try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
+const response = await fetch(apiUrl, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload)
+});
 
         if (!response.ok) {
             const errorBody = await response.text();
