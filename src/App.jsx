@@ -32,7 +32,8 @@ const initialData = {
         { id: 1, name: 'Alva', email: 'super@admin', phone: '081234567890', role: 'superuser', password_hash: 'admin123', is_active: true, created_at: '2023-01-01T10:00:00Z' },
     ],
     accounts: [
-
+        { id: 101, code: 'KAS', name: 'Kas' },
+        { id: 201, code: 'TABUNGAN_USER', name: 'Tabungan Nasabah' },
     ],
     transactions: [],
     ledger_entries: [],
@@ -121,7 +122,7 @@ const callGeminiAPI = async (prompt, systemInstruction = "") => {
     // The execution environment will automatically provide it.
     // filepath: c:\Users\USER\Downloads\Celengans-gh-pages\src\App.jsx
 // ...existing code...
-const apiKey = "AIzaSyC2AM1faX1vmAITjDsZs_wXbnyO2fUhaPQ";
+const apiKey = "AIzaSyAGGc9ERQB9dWXHEEtCAc3o5A_lY2rH4y4";
 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 // ...existing code...
 
